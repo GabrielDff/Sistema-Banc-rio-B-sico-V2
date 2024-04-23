@@ -53,50 +53,53 @@ def func_criar_conta(lista_contas, lista_clientes, cpf, conta):
 
   return True
 
-saldo = 0.0
-LIMITE = 500.0
-extrato = f'Saldo inicial: R$ {saldo}\n'
-numero_saques = 0
-LIMITE_SAQUES = 3
-clientes = []
-contas = []
-conta = 1
+def main():
+  saldo = 0.0
+  LIMITE = 500.0
+  extrato = f'Saldo inicial: R$ {saldo}\n'
+  numero_saques = 0
+  LIMITE_SAQUES = 3
+  clientes = []
+  contas = []
+  conta = 1
 
-print('Bem-vindo ao Python Bank!')
+  print('Bem-vindo ao Python Bank!')
 
-while True:
-  escolha = input('''
-  Escolha uma opção:
-  [D] Depósito.
-  [S] Saque.
-  [E] Extrato.
-  [C] Cadastrar usuário.
-  [A] Criar conta.
-  [0] Sair.
-  ''')
+  while True:
+    escolha = input('''
+    Escolha uma opção:
+    [D] Depósito.
+    [S] Saque.
+    [E] Extrato.
+    [C] Cadastrar usuário.
+    [A] Criar conta.
+    [0] Sair.
+    ''')
 
-  if escolha.upper() == 'D':
-    deposito = float(input('Indique o valor a ser depositado: '))
-    saldo, extrato = func_deposito(saldo, deposito, extrato)
+    if escolha.upper() == 'D':
+      deposito = float(input('Indique o valor a ser depositado: '))
+      saldo, extrato = func_deposito(saldo, deposito, extrato)
 
-  elif escolha.upper() == 'S':
-    saque = float(input('Indique o valor a ser sacado: '))
-    saldo, extrato, numero_saques = func_saque(saldo=saldo, valor=saque, extrato=extrato, limite=LIMITE, numero_saques=numero_saques, limite_saques=LIMITE_SAQUES)
+    elif escolha.upper() == 'S':
+      saque = float(input('Indique o valor a ser sacado: '))
+      saldo, extrato, numero_saques = func_saque(saldo=saldo, valor=saque, extrato=extrato, limite=LIMITE, numero_saques=numero_saques, limite_saques=LIMITE_SAQUES)
 
-  elif escolha.upper() == 'E':
-    func_extrato(saldo, extrato=extrato)
+    elif escolha.upper() == 'E':
+      func_extrato(saldo, extrato=extrato)
 
-  elif escolha.upper() == 'C':
-    cpf = input('Para prosseguir, informe seu CPF: ')
-    func_cadastrar_usuario(clientes, cpf)
+    elif escolha.upper() == 'C':
+      cpf = input('Para prosseguir, informe seu CPF: ')
+      func_cadastrar_usuario(clientes, cpf)
 
-  elif escolha.upper() == 'A':
-    cpf = input('Para prosseguir, informe seu CPF: ')
-    if func_criar_conta(contas, clientes, cpf, conta) == True:
-      conta = conta + 1
+    elif escolha.upper() == 'A':
+      cpf = input('Para prosseguir, informe seu CPF: ')
+      if func_criar_conta(contas, clientes, cpf, conta) == True:
+        conta = conta + 1
 
-  elif escolha == '0':
-    break
+    elif escolha == '0':
+      break
 
-  else:
-    print('Escolha inválida.')
+    else:
+      print('Escolha inválida.')
+
+main()
